@@ -1,0 +1,76 @@
+/* Card Container */
+.card {
+  width: 100%;
+  max-width: 320px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+/* Hover Effect */
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Image Styling */
+.image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Image Hover Effect */
+.card:hover .image {
+  transform: scale(1.05);
+}
+
+/* Content Styling */
+.content {
+  padding: 10px;
+  background: linear-gradient(to right, #004aad, #007bff);
+}
+
+/* Title Styling */
+.title {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+  }
+
+  .image {
+    height: 180px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .image {
+    height: 150px;
+  }
+
+  .title {
+    font-size: 0.95rem;
+  }
+
+}

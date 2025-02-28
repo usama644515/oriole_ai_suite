@@ -1,0 +1,27 @@
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Default: 4 items per row */
+  gap: 20px;
+  padding: 20px;
+}
+
+/* When the screen width is less than 1024px, show 3 items per row */
+@media (max-width: 1024px) {
+  .dashboard {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* When the screen width is less than 768px, show 2 items per row */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* When the screen width is less than 480px, show 1 item per row */
+@media (max-width: 480px) {
+  .dashboard {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

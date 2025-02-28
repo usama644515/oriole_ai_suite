@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+}
+
+.main {
+  display: flex;
+  flex: 1;
+  margin-left: 300px; /* Add margin to prevent overlap */
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .main {
+    margin-left: 80px; /* Adjust for smaller sidebar */
+  }
+}
+
+@media (max-width: 480px) {
+  .main {
+    margin-left: 70px; /* Further adjust for mobile */
+  }
+}

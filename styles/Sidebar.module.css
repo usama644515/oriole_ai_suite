@@ -1,0 +1,134 @@
+/* Sidebar Container */
+.sidebar {
+  width: 260px;
+  height: 100vh;
+  background: linear-gradient(180deg, #004aad, #002766);
+  color: white;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.2);
+  transition: width 0.3s ease-in-out;
+}
+
+.inner {
+  margin-top: 5vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  margin-bottom: 5vh;
+}
+
+/* Logo Section */
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.logo {
+  width: 140px;
+  height: 80px;
+}
+
+/* Divider Line */
+.separator {
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 10px 0;
+}
+
+/* Menu List */
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+}
+
+/* Active Menu Item */
+.active {
+  background-color: rgba(255, 255, 255, 0.3);
+  font-weight: bold;
+  border-left: 4px solid #ffcc00;
+}
+
+/* Hover Effects */
+.menuItem:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Separating Lines */
+.line {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 5px 0;
+}
+
+/* Logout Button */
+.logout {
+  color: #ffcc00;
+  font-weight: bold;
+}
+
+/* Sidebar Footer */
+.footer {
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: 50px;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .logo {
+    width: 30px;
+    height: 30px;
+  }
+
+  .title {
+    display: none;
+  }
+
+  .menuItem span {
+    display: none;
+  }
+
+  .menuItem {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar {
+    width: 70px;
+  }
+
+  .logo {
+    width: 28px;
+    height: 28px;
+  }
+}
