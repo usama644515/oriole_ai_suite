@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import "../styles/globals.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -20,7 +21,21 @@ function MyApp({ Component, pageProps }) {
     checkAuth();
   }, [router.pathname]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          background: "linear-gradient(to right, #004aad, #007bff)", // Gradient background
+        }}
+      >
+        <img src="/loader.png" alt="Loading..." style={{ width: "300px", height: "auto" }} />
+      </div>
+    );
+  }
 
   return (
     <>
