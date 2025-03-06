@@ -4,11 +4,13 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import styles from "@/styles/Login.module.css";
 
 const Login = () => {
   const [userId, setUserId] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -18,15 +20,12 @@ const Login = () => {
 
     try {
       const { data } = await axios.post("/api/login", { userId, password });
-
       toast.success(data.message);
-
-      // Store user data in localStorage
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
-
+      console.log(data.user);
       setTimeout(() => {
-        router.replace("/"); // This removes the login page from history
+        router.replace("/");
       }, 1500);
     } catch (error) {
       toast.error(error.response?.data?.message || "Login Failed");
@@ -40,6 +39,7 @@ const Login = () => {
       <ToastContainer position="top-right" autoClose={3000} />
       <div className={styles.loginBox}>
         <img src="/logo2.png" alt="Logo" className={styles.logo} />
+        {/* <h2 className={styles.title}>Login</h2> */}
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputGroup}>
             <input
@@ -52,14 +52,22 @@ const Login = () => {
             />
           </div>
           <div className={styles.inputGroup}>
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className={styles.input}
-            />
+            <div className={styles.passwordWrapper}>
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className={styles.input}
+              />
+              <span
+                className={styles.icon}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </span>
+            </div>
           </div>
           <button type="submit" className={styles.button} disabled={loading}>
             {loading ? "Logging In..." : "Login"}

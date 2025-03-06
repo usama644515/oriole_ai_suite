@@ -10,38 +10,56 @@ import styles from "@/styles/LiveCameras.module.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const CameraList = ({ ipAddress,limit }) => {
+const CameraList = ({ ipAddress, limit, type }) => {
   const [cameras, setCameras] = useState([]);
   const [selectedCamera, setSelectedCamera] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newCamera, setNewCamera] = useState({ name: "", mjpeg_url: "" });
+  const [newCamera, setNewCamera] = useState({ name: "", rtsp_url: "" });
   const [menuOpen, setMenuOpen] = useState(null);
+  const [userId, setUserId] = useState(null); // State to store userId
 
+  // Fetch userId from local storage on component mount
   useEffect(() => {
-    console.log('ipAddress',ipAddress);
-    console.log('limit',limit);
-    if (ipAddress) {
-      fetch(`${ipAddress}/list_cameras`)
-        .then((res) => res.json())
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user && user._id) {
+      setUserId(user._id);
+    }
+  }, []);
+
+  // Fetch cameras when userId and type are available
+  useEffect(() => {
+    if (ipAddress && userId && type) {
+      fetch(`${ipAddress}/list_cameras`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ userId, modelType: type }), // Send data in the body
+      })
+        .then((res) => {
+          if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+          return res.json();
+        })
         .then((data) => setCameras(data))
         .catch((err) => console.error("Error fetching cameras:", err));
     }
-  }, [ipAddress]);
+    console.log("ipAddress", ipAddress);
+    console.log("userId", userId);
+    console.log("type", type);
+  }, [ipAddress, userId, type]);
 
   const openFullScreen = (camera) => setSelectedCamera(camera);
   const closeFullScreen = () => setSelectedCamera(null);
+
   const openModal = () => {
-    if(cameras.length >= limit){
-      console.log('limit reached');
+    if (cameras.length >= limit) {
       toast.error("Camera limit reached. Cannot add more cameras.");
-    }else{
+    } else {
       setIsModalOpen(true);
     }
-   
-  } 
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
-    setNewCamera({ name: "", mjpeg_url: "" });
+    setNewCamera({ name: "", rtsp_url: "" });
   };
 
   const handleInputChange = (e) => {
@@ -49,7 +67,7 @@ const CameraList = ({ ipAddress,limit }) => {
   };
 
   const handleSubmit = async () => {
-    if (!newCamera.name || !newCamera.mjpeg_url) {
+    if (!newCamera.name || !newCamera.rtsp_url) {
       alert("Please fill in all fields");
       return;
     }
@@ -60,7 +78,9 @@ const CameraList = ({ ipAddress,limit }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: newCamera.name,
-          rtsp_url: newCamera.mjpeg_url,
+          rtsp_url: newCamera.rtsp_url,
+          userId: userId, // Use userId from state
+          modelType: type, // Use type prop
         }),
       });
 
@@ -88,7 +108,8 @@ const CameraList = ({ ipAddress,limit }) => {
       });
 
       if (response.ok) {
-        setCameras(cameras.filter((camera) => camera._id !== cameraId));
+        // Refresh the entire tab after successful deletion
+        window.location.reload();
       } else {
         console.error("Failed to delete camera");
       }
@@ -177,10 +198,10 @@ const CameraList = ({ ipAddress,limit }) => {
             />
             <input
               type="text"
-              name="mjpeg_url"
-              placeholder="Camera URL"
+              name="rtsp_url"
+              placeholder="RTSP URL"
               className={styles.input}
-              value={newCamera.mjpeg_url}
+              value={newCamera.rtsp_url}
               onChange={handleInputChange}
             />
             <button className={styles.submitBtn} onClick={handleSubmit}>
@@ -189,6 +210,7 @@ const CameraList = ({ ipAddress,limit }) => {
           </div>
         </div>
       )}
+      <ToastContainer />
     </div>
   );
 };

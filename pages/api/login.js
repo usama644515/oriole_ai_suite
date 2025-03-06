@@ -44,17 +44,10 @@ export default async function handler(req, res) {
     `token=${token}; Path=/; HttpOnly; Secure; SameSite=Strict`
   );
 
-  // Send response with user data and token
+  // Send response with all user data and token
   res.status(200).json({
     message: "Login successful",
     token,
-    user: {
-      userId: user.userId,
-      userName: user.userName,
-      email: user.email,
-      subscriptionStatus: user.subscriptionStatus,
-      aiModels: user.aiModels,
-      createdAt: user.createdAt,
-    },
+    user,
   });
 }

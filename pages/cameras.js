@@ -6,14 +6,14 @@ import styles from "@/styles/Home.module.css";
 
 export default function Cameras() {
   const router = useRouter();
-  const { category, ipAddress,limit } = router.query; // Get category and IP from URL
+  const { category, ipAddress,limit,type } = router.query; // Get category and IP from URL
 
   return (
     <div className={styles.container}>
       <Sidebar />
       <div className={styles.main}>
         <Navbar />
-        <LiveCameras category={category} ipAddress={ipAddress} limit={limit} />
+        <LiveCameras category={category} ipAddress={ipAddress} limit={limit} type={type} />
       </div>
     </div>
   );

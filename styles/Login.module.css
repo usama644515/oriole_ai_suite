@@ -1,132 +1,147 @@
 /* Main Container */
 .container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: linear-gradient(to right, #004aad, #007bff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: linear-gradient(to right, #004aad, #007bff);
+}
+
+/* Login Box */
+.loginBox {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Logo Styling */
+.logo {
+  width: 150px;
+  margin-bottom: 15px;
+}
+
+/* Title Styling */
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #004aad;
+  margin-bottom: 20px;
+}
+
+/* Form Styling */
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Input Group */
+.inputGroup {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+/* Password Wrapper */
+.passwordWrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Input Field */
+.input {
+  width: calc(100% - 24px); /* Ensures consistent width */
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border 0.3s ease-in-out;
+}
+
+.input:focus {
+  border-color: #004aad;
+  outline: none;
+}
+
+/* Icon Styling */
+.icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #004aad;
+}
+
+/* Button Styling */
+.button {
+  width: calc(100% - 24px); /* Ensures consistent width */
+  background: linear-gradient(to right, #004aad, #007bff);
+  color: white;
+  padding: 12px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+.button:hover {
+  background: linear-gradient(to right, #0f407f, #0869cf);
+  transform: scale(1.05);
+}
+
+/* Register Link */
+.register {
+  margin-top: 12px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.register a {
+  color: #004aad;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.register a:hover {
+  color: #007bff;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  /* Login Box */
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
   .loginBox {
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    width: 100%;
-    max-width: 400px;
-    animation: fadeIn 0.5s ease-in-out;
+    padding: 30px;
   }
-  
-  /* Logo Styling */
-  .logo {
-    width: 150px;
-    margin-bottom: 15px;
-  }
-  
-  /* Title Styling */
+
   .title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #004aad;
-    margin-bottom: 15px;
+    font-size: 1.3rem;
   }
-  
-  /* Form Styling */
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  /* Input Group */
-  .inputGroup {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  
-  /* Input Field */
-  .input {
-    width: calc(100% - 24px); /* Ensures consistent width */
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border 0.3s ease-in-out;
-  }
-  
-  .input:focus {
-    border-color: #004aad;
-    outline: none;
-  }
-  
-  /* Button Styling */
+
+  .input,
   .button {
-    width: calc(100% - 24px); /* Ensures consistent width */
-    background: linear-gradient(to right, #004aad, #007bff);
-    color: white;
-    padding: 12px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    width: calc(100% - 20px);
   }
-  
-  /* Button Hover Effect */
-  .button:hover {
-    background: linear-gradient(to right, #0f407f, #0869cf);
-    transform: scale(1.05);
-  }
-  
-  /* Register Link */
-  .register {
-    margin-top: 12px;
+
+  .button {
     font-size: 0.9rem;
-    color: #555;
   }
-  
-  .register a {
-    color: #004aad;
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .register a:hover {
-    color: #007bff;
-  }
-  
-  /* Fade-in Animation */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 480px) {
-    .loginBox {
-      padding: 30px;
-    }
-  
-    .title {
-      font-size: 1.3rem;
-    }
-  
-    .input,
-    .button {
-      width: calc(100% - 20px);
-    }
-  
-    .button {
-      font-size: 0.9rem;
-    }
-  }
-  
+}
