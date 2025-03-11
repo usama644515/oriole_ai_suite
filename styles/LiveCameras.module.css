@@ -54,7 +54,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: linear-gradient(to right, #004aad, #007bff);
   color: white;
   text-align: center;
   padding: 10px;
