@@ -29,11 +29,12 @@ const CameraList = ({ ipAddress, limit, type }) => {
   // Fetch cameras when userId and type are available
   useEffect(() => {
     if (ipAddress && userId && type) {
-      fetch(`${ipAddress}/list_cameras`, {
+      fetch("/api/proxy", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ userId, modelType: type }), // Send data in the body
+        body: JSON.stringify({ userId, modelType }),
       })
+      
         .then((res) => {
           if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
           return res.json();
