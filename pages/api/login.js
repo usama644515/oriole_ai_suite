@@ -39,10 +39,15 @@ export default async function handler(req, res) {
   );
 
   // Set token in HTTP-Only Cookie
+  // res.setHeader(
+  //   "Set-Cookie",
+  //   `token=${token}; Path=/; HttpOnly; Secure; SameSite=Strict`
+  // );
   res.setHeader(
     "Set-Cookie",
-    `token=${token}; Path=/; HttpOnly; Secure; SameSite=Strict`
+    `token=${token}; Path=/; HttpOnly; SameSite=None`
   );
+  
 
   // Send response with all user data and token
   res.status(200).json({
