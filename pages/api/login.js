@@ -47,7 +47,7 @@ export default async function handler(req, res) {
       message: "Login successful",
       token,
       user: {
-        userId: user.userId,
+        userId: user._id,
         userName: user.userName,
         subscriptionStatus: user.subscriptionStatus,
         aiModels: user.aiModels,

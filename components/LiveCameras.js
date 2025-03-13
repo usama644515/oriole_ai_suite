@@ -21,8 +21,8 @@ const CameraList = ({ ipAddress, limit, type }) => {
   // Fetch userId from local storage on component mount
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user && user._id) {
-      setUserId(user._id);
+    if (user && user.userId) {
+      setUserId(user.userId);
     }
   }, []);
 
