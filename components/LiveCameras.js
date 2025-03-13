@@ -29,7 +29,7 @@ const CameraList = ({ ipAddress, limit, type }) => {
   // Fetch cameras when userId and type are available
   useEffect(() => {
     if (ipAddress && userId && type) {
-      fetch(`https://203.6.209.25:5001/list_cameras`, {
+      fetch(`${ipAddress}/list_cameras`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId, modelType: type }), // Send data in the body
